@@ -1,0 +1,44 @@
+variables:
+  TEST_URL: "https://test.ltc.bcit.ca"
+  PROD_URL: "https://ltc.bcit.ca"
+  WEB_ROOT: "/var/www/html"
+
+stages:
+  - deploy
+
+review-on-staging:
+  stage: deploy
+  script:
+    - mkdir -p "$WEB_ROOT/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/review/$CI_COMMIT_REF_SLUG"
+    - cd .. && rsync -av --delete $CI_PROJECT_NAME/ $WEB_ROOT/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/review/$CI_COMMIT_REF_SLUG
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: "$TEST_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/review/$CI_COMMIT_REF_SLUG"
+    on_stop: stop-review
+
+# Stopping an environment - https://docs.gitlab.com/ce/ci/environments.html#stopping-an-environment
+# https://docs.gitlab.com/ce/ci/yaml/README.html#environment-action
+stop-review:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - rm -Rf $WEB_ROOT/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/*
+  when: manual
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+
+deploy-to-production:
+  stage: deploy
+  script:
+    - mkdir -p "$WEB_ROOT/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+    - cd .. && rsync -av --delete $CI_PROJECT_NAME/ $WEB_ROOT/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  only:
+    - master
+  when: manual
+  environment:
+    name: production
+    url: "$PROD_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+  tags:
+    - production

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta id="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta id="description" content="Course Production Build Time Calculator">
+	<meta id="author" content="LTC Course Production">
+	<title>Module Startup</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="css/theme.css" rel="stylesheet">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body role="document">
+	<div class="container theme-showcase" role="main">
+		<h1 class="page-header">Module Startup</h1>
+
+		<form id="buildCalculator" class="form-horizontal">
+			<fieldset>
+				<legend>Build Time Calculator</legend>
+				<div id="leftSide" class="col-sm-6 pull-left">
+					<div class="form-group">
+						<label for="wordCleanup" class="col-sm-6 control-label">Word cleanup time:<br /><span class="subtext">(in minutes)</span></label>
+						<div class="col-sm-6">
+							<input type="number" step="30" class="form-control" min="0" id="wordCleanup" name="wordCleanup"> </div>
+					</div>
+					<div class="form-group">
+						<label for="pages" class="col-sm-6 control-label">Pages:</label>
+						<div class="col-sm-6">
+							<input type="number" class="form-control" min="0" id="pages" name="pages"> </div>
+					</div>
+					<div class="form-group">
+						<label for="embeds" class="col-sm-6 control-label">Custom iframe embeds:<br /><span class="subtext">(audio, video, interactivities)</span></label>
+						<div class="col-sm-6">
+							<input type="number" class="form-control" min="0" id="embeds" name="embeds"> </div>
+					</div>
+					<div class="form-group">
+						<label for="discussions" class="col-sm-6 control-label">Discussion topics:</label>
+						<div class="col-sm-6">
+							<input type="number" class="form-control" min="0" id="discussions" name="discussions"> </div>
+					</div>
+					<div class="form-group">
+						<label for="assignments" class="col-sm-6 control-label">Dropbox folders:</label>
+						<div class="col-sm-6">
+							<input type="number" class="form-control" min="0" id="assignments" name="assignments"> </div>
+					</div>
+					<div class="form-group">
+						<label for="quizzes" class="col-sm-6 control-label">Self-Tests / Quizzes:</label>
+						<div class="col-sm-6">
+							<input type="number" class="form-control" min="0" id="quizzes" name="quizzes"> </div>
+					</div>
+					<div class="form-group">
+						<label for="otherTime" class="col-sm-6 control-label">Time for other D2L tools:
+									<br /><span class="subtext">(grades, rubrics, etc... in minutes)</span></label>
+						<div class="col-sm-6">
+							<input type="number" step="30" class="form-control" min="0" id="otherTime" name="otherTime"> </div>
+					</div>
+					<div class="form-group">
+						<label for="inflator" class="col-sm-6 control-label">Inflator
+									<br /><span class="subtext">(arbitrary scaler)</span></label>
+						<div class="col-sm-6">
+							<input type="range" id="inflator" name="inflator" value="0" step="10" max="100" min="-50"> </div>
+						<p id="inflator-display">0%</p>
+					</div>
+				</div>
+				<div id="rightSide" class="col-sm-6 pull-right">
+					<div id="buildTime" class="panel panel-default">
+						<pre># Anticipated Build Time Summary<br><div id="timeSummary"></div>
+						</pre>
+						<ul class="subtext">
+							<li>Copy summary into <a href="http://bcit.teamwork.com/" target="_blank">Teamwork.com</a> task description</li>
+							<li>Add time estimate to task</li>
+						</ul>
+					</div>
+					<button class="btn btn-info" type="reset" value="reset">Reset Form</button>
+				</div>
+			</fieldset>
+		</form>
+
+		<form id="moduleForm" class="form-horizontal">
+			<fieldset>
+				<legend>Readme information</legend>
+				<div class="col-sm-6 pull-left">
+					<div class="form-group">
+						<label for="moduleTitle" class="col-sm-6 control-label">Module title:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="moduleTitle" placeholder="Module title" required> </div>
+					</div>
+					<div class="form-group">
+						<label for="moduleKeywords" class="col-sm-6 control-label">Subject keywords:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="moduleKeywords" placeholder="Subject keywords" aria-describedby="keywordHelp"> <span id="keywordHelp" class="subtext">Separate words or phrases with commas</span> </div>
+					</div>
+				</div>
+				<div class="col-sm-6 pull-right">
+					<pre>---
+title:
+keywords: []
+--- 				</pre>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<!-- /container -->
+	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/readme-editor.js"></script>
+	<script src="js/build-calculator.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>
