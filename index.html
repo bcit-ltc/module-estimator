@@ -28,6 +28,30 @@
 	<div class="container theme-showcase" role="main">
 		<h1 class="page-header">Module Estimator</h1>
 
+		<form id="moduleForm" class="form-horizontal">
+			<fieldset>
+				<legend>Readme Information</legend>
+				<div class="col-sm-6 pull-left">
+					<div class="form-group">
+						<label for="moduleTitle" class="col-sm-6 control-label">Module title:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="moduleTitle" placeholder="Module title" required> </div>
+					</div>
+					<div class="form-group">
+						<label for="moduleKeywords" class="col-sm-6 control-label">Subject keywords:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="moduleKeywords" placeholder="Subject keywords" aria-describedby="keywordHelp"> <span id="keywordHelp" class="subtext">Separate words or phrases with commas</span> </div>
+					</div>
+				</div>
+				<div class="col-sm-6 pull-right">
+					<pre>---
+title:
+keywords: []
+--- 				</pre>
+				</div>
+			</fieldset>
+		</form>
+
 		<form id="buildCalculator" class="form-horizontal">
 			<fieldset>
 				<legend>Build Time Calculator</legend>
@@ -58,7 +82,7 @@
 							<input type="number" class="form-control" min="0" id="assignments" name="assignments"> </div>
 					</div>
 					<div class="form-group">
-						<label for="quizzes" class="col-sm-6 control-label">Self-Assessments / Quizzes:<br /><span class="subtext">(uploaded by Respondus)</span></label>
+						<label for="quizzes" class="col-sm-6 control-label">Self-Assessments / Quizzes:<br /><span class="subtext">(uploaded by Qcon/Respondus)</span></label>
 						<div class="col-sm-6">
 							<input type="number" class="form-control" min="0" id="quizzes" name="quizzes"> </div>
 					</div>
@@ -90,29 +114,6 @@
 			</fieldset>
 		</form>
 
-		<form id="moduleForm" class="form-horizontal">
-			<fieldset>
-				<legend>Readme information</legend>
-				<div class="col-sm-6 pull-left">
-					<div class="form-group">
-						<label for="moduleTitle" class="col-sm-6 control-label">Module title:</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="moduleTitle" placeholder="Module title" required> </div>
-					</div>
-					<div class="form-group">
-						<label for="moduleKeywords" class="col-sm-6 control-label">Subject keywords:</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="moduleKeywords" placeholder="Subject keywords" aria-describedby="keywordHelp"> <span id="keywordHelp" class="subtext">Separate words or phrases with commas</span> </div>
-					</div>
-				</div>
-				<div class="col-sm-6 pull-right">
-					<pre>---
-title:
-keywords: []
---- 				</pre>
-				</div>
-			</fieldset>
-		</form>
 	</div>
 	<!-- /container -->
 	<script src="js/vendor/jquery.min.js"></script>
