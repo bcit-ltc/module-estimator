@@ -44,7 +44,10 @@
 					</div>
 				</div>
 				<div class="col-sm-6 pull-right">
-					<pre>---
+					<button style="position:absolute;right:2em;top:1em" class="float-right align-top btn btn-default btn-sm" data-clipboard-target="#readme-code" type="button" value="copy">
+						<span class="glyphicon glyphicon-copy"></span> Copy
+					</button>
+					<pre id="readme-code">---
 title:
 keywords: []
 --- 				</pre>
@@ -88,27 +91,34 @@ keywords: []
 					</div>
 					<div class="form-group">
 						<label for="otherTime" class="col-sm-6 control-label">Time for other D2L tools:
-									<br /><span class="subtext">(grades, rubrics, etc... in minutes)</span></label>
+							<br /><span class="subtext">(grades, rubrics, etc... in minutes)</span></label>
 						<div class="col-sm-6">
 							<input type="number" step="30" class="form-control" min="0" id="otherTime" name="otherTime"> </div>
 					</div>
 					<div class="form-group">
 						<label for="inflator" class="col-sm-6 control-label">Inflator
-									<br /><span class="subtext">(arbitrary scaler)</span></label>
+							<br /><span class="subtext">(arbitrary scaler)</span></label>
 						<div class="col-sm-6">
 							<input type="range" id="inflator" name="inflator" value="0" step="10" max="100" min="-50"> </div>
 						<p id="inflator-display">0%</p>
 					</div>
 				</div>
 				<div id="rightSide" class="col-sm-6 pull-right">
+
 					<div id="buildTime" class="panel panel-default">
-						<pre># Anticipated Build Time Summary<br><div id="timeSummary"></div>
+						<!-- Trigger -->
+
+						<button style="position:absolute;right:2em;top:1em" class="float-right align-top btn btn-default btn-sm" data-clipboard-target="#time-summary-code" type="button" value="copy">
+							<span class="glyphicon glyphicon-copy"></span> Copy
+						</button>
+						<pre id="time-summary-code"># Anticipated Build Time Summary<br><div id="timeSummary"></div>
 						</pre>
 						<ul class="subtext">
 							<li>Copy summary into <a href="http://bcit.teamwork.com/" target="_blank">Teamwork.com</a> task description</li>
 							<li>Add time estimate to task</li>
 						</ul>
 					</div>
+
 					<button class="btn btn-info" type="reset" value="reset">Reset Form</button>
 				</div>
 			</fieldset>
@@ -121,6 +131,8 @@ keywords: []
 	<script src="js/build-calculator.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
-</body>
-
-</html>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+	<script>
+		new ClipboardJS('.btn');
+	</script>
+</body></html>
