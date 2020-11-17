@@ -8,7 +8,7 @@ build:
 deploy:
   kubectl:
     manifests:
-    - calculator-pod.yaml
-    - calculator-service.yaml
-    - webnet-networkpolicy.yaml
-    - ingress.yaml
+    - manifests/calculator-pod.yaml
+    - manifests/calculator-service.yaml
+    - manifests/webnet-networkpolicy.yaml
+    - manifests/ingress.yaml
