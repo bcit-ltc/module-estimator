@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: module-estimator
+build:
+  artifacts:
+  - image: calculator
+deploy:
+  kubectl:
+    manifests:
+    - calculator-pod.yaml
+    - calculator-service.yaml
+    - webnet-networkpolicy.yaml
+    - ingress.yaml
