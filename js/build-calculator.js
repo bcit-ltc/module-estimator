@@ -17,7 +17,7 @@
 			fixedCost: 5
 		},
 		assignments: {
-			label: "Dropbox folders",
+			label: "Assignment folders",
 			unitCost: 5,
 			fixedCost: 5
 		},
