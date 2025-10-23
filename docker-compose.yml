@@ -1,13 +1,7 @@
-version: "3"
+# Build a very simple docker compose file to test the Dockerfile
+
 services:
-  calculator:
+  module-estimator:
     build: .
-    deploy:
-      restart_policy:
-        condition: on-failure
     ports:
-      - "80:80"
-    networks:
-      - webnet
-networks:
-  webnet:
+      - "8080:8080"

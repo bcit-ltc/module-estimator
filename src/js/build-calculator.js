@@ -41,6 +41,57 @@
 		$("#inflator-display").text($(this).val() + "%");
 	});
 
+	// Add comprehensive input validation to only allow numbers
+	$("#leftSide input[type='number']").on("keypress", function (e) {
+		// Allow: backspace, delete, tab, escape, enter
+		if ([8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
+			// Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+			(e.keyCode === 65 && e.ctrlKey === true) ||
+			(e.keyCode === 67 && e.ctrlKey === true) ||
+			(e.keyCode === 86 && e.ctrlKey === true) ||
+			(e.keyCode === 88 && e.ctrlKey === true)) {
+			return;
+		}
+		// Only allow digits 0-9 (both main keyboard and numpad)
+		if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+
+	// Additional input event handler to catch any characters that might slip through
+	$("#leftSide input[type='number']").on("input", function (e) {
+		var value = this.value;
+		// Remove any non-digit characters
+		var cleanValue = value.replace(/[^0-9]/g, '');
+		if (value !== cleanValue) {
+			this.value = cleanValue;
+		}
+	});
+
+	// Prevent non-numeric characters on paste
+	$("#leftSide input[type='number']").on("paste", function (e) {
+		e.preventDefault();
+		var pasteData = e.originalEvent.clipboardData.getData('text');
+		// Only allow numeric characters
+		var cleanData = pasteData.replace(/[^0-9]/g, '');
+		if (cleanData) {
+			this.value = cleanData;
+		}
+	});
+
+	// Ensure values stay within min bounds and are integers
+	$("#leftSide input[type='number']").on("blur", function () {
+		var $this = $(this);
+		var value = parseInt($this.val());
+		var min = parseInt($this.attr('min')) || 0;
+		
+		if (isNaN(value) || value < min) {
+			$this.val(min);
+		} else {
+			$this.val(Math.floor(value)); // Ensure integer values
+		}
+	});
+
 	$("#leftSide").on("change input", function () {
 		var buildTime = calculateBuildTime();
 		updateDisplay(buildTime);

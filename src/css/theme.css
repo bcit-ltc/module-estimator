@@ -1,0 +1,86 @@
+body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#subTitle {
+    padding-bottom: 10px;
+}
+
+.nav {
+    margin-bottom: 20px;
+}
+
+.subtext {
+    padding-bottom: 0;
+    font-weight: 300;
+    font-size: 85%;
+    font-style: italic;
+}
+
+legend {
+    padding-top: 16px;
+}
+
+
+/* SCHOOL DROPDOWN - Clean styling without images */
+
+
+/* INFLATOR */
+
+#inflator {
+    position: relative;
+    z-index: 2;
+}
+
+#inflator:before {
+    content: "";
+    height: 10px;
+    width: 0;
+    border: 1px solid gray;
+    left: 34%;
+    top: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+#inflator-display {
+    text-align: center;
+    width: 100%;
+    margin-left: 10px;
+}
+
+
+/* SUMMARY */
+
+#timeSummary thead {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+/*#timeSummary thead th:nth-of-type(1n + 2) {
+    text-align: center;
+}*/
+
+#timeSummary .number {
+    text-align: center;
+    width:15%;
+}
+
+#timeSummary .item {
+    text-align: right;
+}
+
+#timeSummary .time {
+    width:33%;
+}
+
+#timeSummary tfoot {
+/*    font-weight: 700; */
+    border-top: 3px solid #333;
+    font-size: 16px;
+}
+
+#timeSummary tfoot th {
+    text-align: right;
+}
