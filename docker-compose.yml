@@ -1,7 +1,20 @@
 # Build a very simple docker compose file to test the Dockerfile
+name: ${APP_NAME:-module-estimator}
 
 services:
-  module-estimator:
-    build: .
+  app:
+    build:
+      target: dev
+
+    environment:
+      - DEBUG=true
+
+    # https://docs.docker.com/compose/how-tos/file-watch/
+    develop:
+      watch:
+        - path: src/
+          action: sync
+          target: /usr/share/nginx/html
+
     ports:
       - "8080:8080"
