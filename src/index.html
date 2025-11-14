@@ -18,11 +18,11 @@
         <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
         <!-- Custom styles for this template -->
         <link href="css/theme.css" rel="stylesheet" />
-		<!-- Privacy-friendly analytics by Plausible (self-hosted script) -->
+		<!-- Privacy-friendly analytics by Plausible (self-hosted script with proxied API) -->
 		<script async src="js/vendor/plausible.js"></script>
 		<script>
 		  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-		  plausible.init()
+		  plausible.init({endpoint: '/api/event'})
 		</script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
