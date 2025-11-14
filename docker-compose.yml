@@ -4,10 +4,15 @@ name: ${APP_NAME:-module-estimator}
 services:
   app:
     build:
+      context: .
       target: dev
+      platforms:
+        - linux/amd64
+        - linux/arm64
 
     environment:
       - DEBUG=true
+      - CI=false
 
     # https://docs.docker.com/compose/how-tos/file-watch/
     develop:
